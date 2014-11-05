@@ -4,8 +4,7 @@
 \alias{lasagna}
 \title{Lasagna Function}
 \usage{
-lasagna(X, col = rev(sequential_hcl(100, h = 120, c = 80, power =
-  2.2)[1:100]), axes = FALSE, ...)
+lasagna(X, col = rainbow_hcl(100), axes = FALSE, ...)
 }
 \arguments{
 \item{X}{a matrix: each row a subject, each column a time/location across subjects}
