@@ -6,6 +6,9 @@ Description: Lasagna plots in base and ggplot graphics in R.  Ideal for
     longitudinal data where spaghetti plots succumb to overplotting.
 Depends:
     R (>= 2.14)
+Imports:
+    colorspace,
+    RColorBrewer
 License: GPL-2
 URL: https://github.com/swihart/lasagnar
 BugReports: https://github.com/swihart/lasagnar/issues
