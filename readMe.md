@@ -101,3 +101,45 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
 
 ![plot of chunk unnamed-chunk-3](./readMe_files/figure-html/unnamed-chunk-3.png) 
 
+However, we still need to do some customization:  the row ordering in the `ggplot()` doesn't correspond with the ordering in the data.frame (e.g., P1 is bottom row in plot but first row in data.frame) and not all the numbers are showing on the x-axis.  Easy fixes:
+
+```r
+## Create the data
+palette <- brewer.pal(4, "PuOr")[-2]
+## the matrix containing data for Figure 02a
+H.mat <- matrix(NA, nrow=4, ncol=6)
+H.mat[1, 1:6] = 100*c(2, 1, 1, 1, 1, 2)
+H.mat[2, 1:6] = 100*c(2, 2, 2, 3, 2, 1)
+H.mat[3, 1:6] = 100*c(2, 2, 1, 1, 1, 3)
+H.mat[4, 1:6] = 100*c(3, 3, 2, 1, 2, 3)
+
+library(ggplot2)
+library(reshape2)
+rownames(H.mat)<-c('P1','T1','P2','T2')
+colnames(H.mat)<-seq(ncol(H.mat))
+names(dimnames(H.mat))<-c('Subject','Time')
+H.df<-melt(H.mat)
+
+## EDIT to nograpes answer:
+## reorder the factor that is Subject by setting levels to the reverse order of rownames 
+H.df$Subject <- factor(H.df$Subject, levels = rev(rownames(H.mat))) 
+
+
+# If you want those exact colours the author used:
+col<-palette[match(ordered(H.df$value),levels(ordered(H.df$value)))]
+ggplot(H.df,aes(x=Time,y=Subject,fill=col)) + 
+  geom_tile(colour='black') + scale_fill_identity() + 
+##   
+## EDIT to nograpes answer in the remaining lines:
+  ## add title:
+  ggtitle("(A)  Initial Lasagna Plot")+
+  ## adjust size:
+theme(axis.text=element_text(size=30),
+      axis.title=element_text(size=14,face="bold"))+
+## get all the breaks:
+  scale_x_discrete(breaks=1:6) +
+## and for some reason need this line to zoom:
+  coord_cartesian(xlim=c(.49,6.51))
+```
+
+![plot of chunk unnamed-chunk-4](./readMe_files/figure-html/unnamed-chunk-4.png) 
