@@ -9,7 +9,8 @@ lasagna(X, col = rainbow_hcl(100), axes = FALSE, ...)
 \arguments{
 \item{X}{a matrix: each row a subject, each column a time/location across subjects}
 
-\item{col}{colors}
+\item{col}{colors.  See "Escaping RGB Land" and the vignette for the colorspace package
+for followable advice on colors.}
 
 \item{axes}{(logical) axes on or off?}
 
