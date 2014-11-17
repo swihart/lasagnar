@@ -78,7 +78,7 @@ axis(2,
      col="black") 
 ```
 
-![plot of chunk unnamed-chunk-2](./readMe_files/figure-html/unnamed-chunk-21.png) 
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted1.png) 
 
 ```r
 ##
@@ -111,15 +111,51 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
   coord_cartesian(xlim=c(.49,6.51))
 ```
 
-![plot of chunk unnamed-chunk-2](./readMe_files/figure-html/unnamed-chunk-22.png) 
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted2.png) 
 
 
 
 
 
 #Four sorting functions:  `wr()`, `er()`, `wc()`, `ec()`.
-* `wr()`
+* `wr()` sorts within-row: if the values being displayed are discrete, use `wr.disc()`; continuous use `wr.cont()`.
+`lasagna(wr.disc(H.mat, colorSeq=c(100,200,300)))` generates (see code chunk below for full code; axes, etc.):
+![plot of chunk unnamed-chunk-2](./readMe_files/figure-html/unnamed-chunk-2.png) 
 
+
+
+```r
+## within-row
+lasagna(wr.disc(H.mat, colorSeq=c(100,200,300)),
+        col=palette,
+        axes=F,
+        xlab = "",
+        ylab = "", cex.lab=fig02.lab, tck=0, mgp=c(0,.50,0))
+box()
+title("(B)  Within-row sorting of (A)", adj=0)
+## axis(1, seq(0,1,1/5), 1:6, cex.axis=fig02.axis, tck=0, mgp=c(0,.1,0))
+axis(1, c(1/10,3/10,5/10,7/10,9/10),c("1/6","1/3","1/2","2/3","5/6") , cex.axis=fig02.axis, tck=0, mgp=c(0,.50,0))
+axis(2,
+     seq(0,1,1/3),
+     rev(c("P1",
+           "T1",
+           "P2",
+           "T2")),
+     las=1,
+     cex.axis=fig02.axis, tck=0, mgp=c(0,.2,0))
+axis(1,
+     c(1/10,3/10,5/10,7/10,9/10),
+     lab=NA,
+     tck=1,
+     lty=1,
+     col="black") # grid lines
+axis(2,
+     c(1/6,3/6,5/6),
+     lab=NA,
+     tck=1,
+     lty=1,
+     col="black") # grid lines
+```
 
 
 Note:  in progress below this line.
@@ -169,7 +205,7 @@ axis(2,
      col="black") 
 ```
 
-![plot of chunk unnamed-chunk-3](./readMe_files/figure-html/unnamed-chunk-3.png) 
+![plot of chunk unnamed-chunk-4](./readMe_files/figure-html/unnamed-chunk-4.png) 
 
 
 #ggplot implementation does not require `axis()` and `title()`:
@@ -199,7 +235,7 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
   geom_tile(colour='black') + scale_fill_identity()
 ```
 
-![plot of chunk unnamed-chunk-4](./readMe_files/figure-html/unnamed-chunk-4.png) 
+![plot of chunk unnamed-chunk-5](./readMe_files/figure-html/unnamed-chunk-5.png) 
 
 However, we still need to do some customization:  the row ordering in the `ggplot()` doesn't correspond with the ordering in the data.frame (e.g., P1 is bottom row in plot but first row in data.frame) and not all the numbers are showing on the x-axis.  Easy fixes:
 
@@ -242,4 +278,4 @@ theme(axis.text=element_text(size=30),
   coord_cartesian(xlim=c(.49,6.51))
 ```
 
-![plot of chunk unnamed-chunk-5](./readMe_files/figure-html/unnamed-chunk-5.png) 
+![plot of chunk unnamed-chunk-6](./readMe_files/figure-html/unnamed-chunk-6.png) 
