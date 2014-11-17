@@ -4,15 +4,13 @@
 \alias{wr.disc}
 \title{within-row sorting of discrete values}
 \usage{
-wr.disc(X, orderVar = c(), colorSeq, naLast = F)
+wr.disc(X, colorSeq = sort(unique(X)), naLast = F)
 }
 \arguments{
 \item{X}{a matrix: each row a subject, each column a time/location across subjects}
 
-\item{orderVar}{a vector with the unique elements of X presented in the order of the desired
+\item{colorSeq}{a vector with the unique elements of X presented in the order of the desired
 resultant sorting}
-
-\item{colorSeq}{ideally the elements of 'palette' of the original lasagna plot in the corresponding order of `orderVar`}
 
 \item{naLast}{defaults to false; should NA values be sorted to first position or last. Defaults to FALSE.
 ## within-row for discrete}
