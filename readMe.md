@@ -115,6 +115,13 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
 
 
 
+
+
+#Four sorting functions:  `wr()`, `er()`, `wc()`, `ec()`.
+* `wr()`
+
+
+
 Note:  in progress below this line.
 
 
