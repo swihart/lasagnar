@@ -119,21 +119,23 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
 
 #Four sorting functions:  `wr()`, `er()`, `wc()`, `ec()`.
 * `wr()` sorts within-row: if the values being displayed are discrete, use `wr.disc()`; continuous use `wr.cont()`.
-`lasagna(wr.disc(H.mat, colorSeq=c(100,200,300)))` generates (see code chunk below for full code; axes, etc.):
+`lasagna(wr.disc(H.mat))` generates a within-row sorted `H.mat` where the smallest value (and corresponding color) is left-most; to control this use the `colorSeq` option: `lasagna(wr.disc(H.mat), colorSeq=c(300,100,200))` (see code chunk below for full code; axes, etc.):
 ![plot of chunk unnamed-chunk-2](./readMe_files/figure-html/unnamed-chunk-2.png) 
+
+![plot of chunk unnamed-chunk-3](./readMe_files/figure-html/unnamed-chunk-3.png) 
+
 
 
 
 ```r
 ## within-row
-##lasagna(wr.disc(H.mat, colorSeq=c(100,200,300)),
-        lasagna(wr.disc(H.mat),
+lasagna(wr.disc(H.mat),
         col=palette,
         axes=F,
         xlab = "",
         ylab = "", cex.lab=fig02.lab, tck=0, mgp=c(0,.50,0))
 box()
-title("(B)  Within-row sorting of (A)", adj=0)
+title("(B)  Within-row sorting of (A): Orange Left-most", adj=0)
 ## axis(1, seq(0,1,1/5), 1:6, cex.axis=fig02.axis, tck=0, mgp=c(0,.1,0))
 axis(1, c(1/10,3/10,5/10,7/10,9/10),c("1/6","1/3","1/2","2/3","5/6") , cex.axis=fig02.axis, tck=0, mgp=c(0,.50,0))
 axis(2,
@@ -159,7 +161,38 @@ axis(2,
 ```
 
 
-In the within-row sorting above, orange was given the left-most position and the x-axis changed to "proportion orange."  If we wanted dark purple in the left most, we could use the `orderVar` and `colorSeq` options:
+```r
+## within-row with colorSeq order control:
+lasagna(wr.disc(H.mat, colorSeq=c(300,100,200)),
+        col=palette,
+        axes=F,
+        xlab = "",
+        ylab = "", cex.lab=fig02.lab, tck=0, mgp=c(0,.50,0))
+box()
+title("(B)  Within-row sorting of (A): Dark Purple Left-most", adj=0)
+## axis(1, seq(0,1,1/5), 1:6, cex.axis=fig02.axis, tck=0, mgp=c(0,.1,0))
+axis(1, c(1/10,3/10,5/10,7/10,9/10),c("1/6","1/3","1/2","2/3","5/6") , cex.axis=fig02.axis, tck=0, mgp=c(0,.50,0))
+axis(2,
+     seq(0,1,1/3),
+     rev(c("P1",
+           "T1",
+           "P2",
+           "T2")),
+     las=1,
+     cex.axis=fig02.axis, tck=0, mgp=c(0,.2,0))
+axis(1,
+     c(1/10,3/10,5/10,7/10,9/10),
+     lab=NA,
+     tck=1,
+     lty=1,
+     col="black") # grid lines
+axis(2,
+     c(1/6,3/6,5/6),
+     lab=NA,
+     tck=1,
+     lty=1,
+     col="black") # grid lines
+```
 
 
 Note:  in progress below this line.
