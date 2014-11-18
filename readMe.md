@@ -195,5 +195,88 @@ axis(2,
 ```
 
 
+
 Note:  in progress below this line.
+Note:  in progress below this line.
+Note:  in progress below this line.
+
+Something came to my attention while working on er():  no one wants to handle the axes comments themselves ---- rewrite lasagna to include these and do automatic sorting (for instance, if you don't include the axes comments in lasagna, you'll have to do the sorting of the subject ids outside of the er() sorting...I mean, what a mess.  )
+
+
+* `er()` sorts entire-row: if the values being displayed are discrete
+`lasagna(er(H.mat))` generates an entire-row sorted `H.mat` where the smallest value (and corresponding color) is left-most; to control this use the `orderVar` option: `lasagna(wr.disc(H.mat), colorSeq=c(300,100,200))` (see code chunk below for full code; axes, etc.):
+![plot of chunk unnamed-chunk-6](./readMe_files/figure-html/unnamed-chunk-6.png) 
+
+![plot of chunk unnamed-chunk-7](./readMe_files/figure-html/unnamed-chunk-7.png) 
+
+
+
+
+```r
+## within-row
+lasagna(wr.disc(H.mat),
+        col=palette,
+        axes=F,
+        xlab = "",
+        ylab = "", cex.lab=fig02.lab, tck=0, mgp=c(0,.50,0))
+box()
+title("(B)  Within-row sorting of (A): Orange Left-most", adj=0)
+## axis(1, seq(0,1,1/5), 1:6, cex.axis=fig02.axis, tck=0, mgp=c(0,.1,0))
+axis(1, c(1/10,3/10,5/10,7/10,9/10),c("1/6","1/3","1/2","2/3","5/6") , cex.axis=fig02.axis, tck=0, mgp=c(0,.50,0))
+axis(2,
+     seq(0,1,1/3),
+     rev(c("P1",
+           "T1",
+           "P2",
+           "T2")),
+     las=1,
+     cex.axis=fig02.axis, tck=0, mgp=c(0,.2,0))
+axis(1,
+     c(1/10,3/10,5/10,7/10,9/10),
+     lab=NA,
+     tck=1,
+     lty=1,
+     col="black") # grid lines
+axis(2,
+     c(1/6,3/6,5/6),
+     lab=NA,
+     tck=1,
+     lty=1,
+     col="black") # grid lines
+```
+
+
+```r
+## within-row with colorSeq order control:
+lasagna(wr.disc(H.mat, colorSeq=c(300,100,200)),
+        col=palette,
+        axes=F,
+        xlab = "",
+        ylab = "", cex.lab=fig02.lab, tck=0, mgp=c(0,.50,0))
+box()
+title("(B)  Within-row sorting of (A): Dark Purple Left-most", adj=0)
+## axis(1, seq(0,1,1/5), 1:6, cex.axis=fig02.axis, tck=0, mgp=c(0,.1,0))
+axis(1, c(1/10,3/10,5/10,7/10,9/10),c("1/6","1/3","1/2","2/3","5/6") , cex.axis=fig02.axis, tck=0, mgp=c(0,.50,0))
+axis(2,
+     seq(0,1,1/3),
+     rev(c("P1",
+           "T1",
+           "P2",
+           "T2")),
+     las=1,
+     cex.axis=fig02.axis, tck=0, mgp=c(0,.2,0))
+axis(1,
+     c(1/10,3/10,5/10,7/10,9/10),
+     lab=NA,
+     tck=1,
+     lty=1,
+     col="black") # grid lines
+axis(2,
+     c(1/6,3/6,5/6),
+     lab=NA,
+     tck=1,
+     lty=1,
+     col="black") # grid lines
+```
+
 
