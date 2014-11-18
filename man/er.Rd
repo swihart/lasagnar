@@ -4,7 +4,7 @@
 \alias{er}
 \title{entire-row sorting}
 \usage{
-er(X, orderVar = c(), naLast = F)
+er(X, orderVar = sort(unique(X)), naLast = F)
 }
 \arguments{
 \item{X}{a matrix: each row a subject, each column a time/location across subjects}
