@@ -4,13 +4,13 @@
 \alias{er}
 \title{entire-row sorting}
 \usage{
-er(X, orderVar = sort(unique(X)), naLast = F)
+er(X, orderVar = min(X, na.rm = TRUE), naLast = F)
 }
 \arguments{
 \item{X}{a matrix: each row a subject, each column a time/location across subjects}
 
-\item{orderVar}{a vector with the unique elements of X presented in the order of the desired
-resultant sorting}
+\item{orderVar}{a scalar; one of the values in X upon which the percentage of occurence will determine the ordering of the rows.
+Defaults to the minimum value of X}
 
 \item{naLast}{defaults to false; should NA values be sorted to first position or last. Defaults to FALSE.}
 }
