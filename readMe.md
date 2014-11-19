@@ -38,22 +38,32 @@ H.mat[1, 1:6] = 100*c(2, 1, 1, 1, 1, 2)
 H.mat[2, 1:6] = 100*c(2, 2, 2, 3, 2, 1)
 H.mat[3, 1:6] = 100*c(2, 2, 1, 1, 1, 3)
 H.mat[4, 1:6] = 100*c(3, 3, 2, 1, 2, 3)
-## margins:
+## set rownames with ids
+rownames(H.mat)<-c("P1","T1","P2","T2")
+
+## Fiddle with the margins:
 par(mai = c(.34,.39,.34,.09))
+
+## bam:
+lasagna(H.mat)
+```
+
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted1.png) 
+
+```r
+## however, you may want lasagna plain and customize the plot how you wish
+## with axes statements, etc:
+
 ## variables to specify the scalar CEX multiplier for title, labels, and axis:
 fig02.main <- 1.75
 fig02.lab <- 1.75
 fig02.axis <- 1.75
 
-
-
-
-
 ## 
 ## Base:
 ##
-## initial lasagna() call followed by may title() and axis() calls:
-lasagna(H.mat,
+## initial lasagna_plain() call followed by may title() and axis() calls:
+lasagna_plain(H.mat,
         col=palette,
         axes=F,
         xlab = "",
@@ -78,7 +88,7 @@ axis(2,
      col="black") 
 ```
 
-![plot of chunk partystarted](./readMe_files/figure-html/partystarted1.png) 
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted2.png) 
 
 ```r
 ##
@@ -111,7 +121,7 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
   coord_cartesian(xlim=c(.49,6.51))
 ```
 
-![plot of chunk partystarted](./readMe_files/figure-html/partystarted2.png) 
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted3.png) 
 
 
 
@@ -119,7 +129,7 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
 
 #Four sorting functions:  `wr()`, `er()`, `wc()`, `ec()`.
 * `wr()` sorts within-row: if the values being displayed are discrete, use `wr.disc()`; continuous use `wr.cont()`.
-`lasagna(wr.disc(H.mat))` generates a within-row sorted `H.mat` where the smallest value (and corresponding color) is left-most; to control this use the `colorSeq` option: `lasagna(wr.disc(H.mat), colorSeq=c(300,100,200))` (see code chunk below for full code; axes, etc.):
+`lasagna_plain(wr.disc(H.mat))` generates a within-row sorted `H.mat` where the smallest value (and corresponding color) is left-most; to control this use the `colorSeq` option: `lasagna_plain(wr.disc(H.mat), colorSeq=c(300,100,200))` (see code chunk below for full code; axes, etc.):
 ![plot of chunk unnamed-chunk-2](./readMe_files/figure-html/unnamed-chunk-2.png) 
 
 ![plot of chunk unnamed-chunk-3](./readMe_files/figure-html/unnamed-chunk-3.png) 
@@ -129,7 +139,7 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
 
 ```r
 ## within-row
-lasagna(wr.disc(H.mat),
+lasagna_plain(wr.disc(H.mat),
         col=palette,
         axes=F,
         xlab = "",
@@ -163,7 +173,7 @@ axis(2,
 
 ```r
 ## within-row with colorSeq order control:
-lasagna(wr.disc(H.mat, colorSeq=c(300,100,200)),
+lasagna_plain(wr.disc(H.mat, colorSeq=c(300,100,200)),
         col=palette,
         axes=F,
         xlab = "",
@@ -204,7 +214,7 @@ Something came to my attention while working on er():  no one wants to handle th
 
 
 * `er()` sorts entire-row: if the values being displayed are discrete
-`lasagna(er(H.mat))` generates an entire-row sorted `H.mat` where the smallest value (and corresponding color) is left-most; to control this use the `orderVar` option: `lasagna(wr.disc(H.mat), colorSeq=c(300,100,200))` (see code chunk below for full code; axes, etc.):
+`lasagna_plain(er(H.mat))` generates an entire-row sorted `H.mat` where the smallest value (and corresponding color) is left-most; to control this use the `orderVar` option: `lasagna_plain(wr.disc(H.mat), colorSeq=c(300,100,200))` (see code chunk below for full code; axes, etc.):
 ![plot of chunk unnamed-chunk-6](./readMe_files/figure-html/unnamed-chunk-6.png) 
 
 ![plot of chunk unnamed-chunk-7](./readMe_files/figure-html/unnamed-chunk-7.png) 
@@ -214,7 +224,7 @@ Something came to my attention while working on er():  no one wants to handle th
 
 ```r
 ## within-row
-lasagna(wr.disc(H.mat),
+lasagna_plain(wr.disc(H.mat),
         col=palette,
         axes=F,
         xlab = "",
@@ -248,7 +258,7 @@ axis(2,
 
 ```r
 ## within-row with colorSeq order control:
-lasagna(wr.disc(H.mat, colorSeq=c(300,100,200)),
+lasagna_plain(wr.disc(H.mat, colorSeq=c(300,100,200)),
         col=palette,
         axes=F,
         xlab = "",

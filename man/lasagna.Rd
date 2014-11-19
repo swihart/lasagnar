@@ -4,15 +4,25 @@
 \alias{lasagna}
 \title{Lasagna Function}
 \usage{
-lasagna(X, col = rainbow_hcl(100), axes = FALSE, ...)
+lasagna(X, col = rainbow_hcl(100), axes = FALSE,
+  main = "(A)  Initial Lasagna Plot", main.adj = 0, cex.axis = 1.75,
+  gridlines = TRUE, ...)
 }
 \arguments{
-\item{X}{a matrix: each row a subject, each column a time/location across subjects}
+\item{X}{a matrix: each row a subject, each column a time/location across subjects; preferably rownames are the ids.}
 
 \item{col}{colors.  See "Escaping RGB Land" and the vignette for the colorspace package
 for followable advice on colors.}
 
-\item{axes}{(logical) axes on or off?}
+\item{axes}{(logical) TRUE invokes the default axes from image().  FALSE invokes best guess (to be better defined later)}
+
+\item{main}{as in plot(), the text of the title.  Defaults to "(A)  Initial Lasagna Plot"}
+
+\item{main.adj}{the value for `adj` in title().  Defaults to 0, which is left-aligned.}
+
+\item{cex.axis}{the cex.axis value if `axes` is FALSE.}
+
+\item{gridlines}{(logical) default TRUE.}
 
 \item{...}{Additional stuff to be passed to \code{image}}
 }
