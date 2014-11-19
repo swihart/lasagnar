@@ -22,7 +22,7 @@ for followable advice on colors.}
 
 \item{cex.axis}{the cex.axis value if `axes` is FALSE.}
 
-\item{gridlines}{(logical) default TRUE.}
+\item{gridlines}{(logical ) default TRUE.}
 
 \item{...}{Additional stuff to be passed to \code{image}}
 }

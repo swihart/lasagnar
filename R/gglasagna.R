@@ -7,7 +7,7 @@
 #' @param main as in plot(), the text of the title.  Defaults to "(A)  Initial Lasagna Plot"
 #' @param main.adj the value for `adj` in title().  Defaults to 0, which is left-aligned.
 #' @param cex.axis the cex.axis value if `axes` is FALSE.
-#' @param gridlines (logical) default TRUE.
+#' @param gridlines (logical ) default TRUE.
 #' @param ... Additional stuff to be passed to \code{image}
 gglasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE, 
                    main="(A)  Initial Lasagna Plot", main.adj=0, 
@@ -25,6 +25,7 @@ gglasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE,
   
   # If you want those exact colours the author used:
   colors<-col[match(ordered(H.df$value),levels(ordered(H.df$value)))]
+  H.df$colors <- colors
   ggplot(H.df,aes(x=Time,y=Subject,fill=colors)) + 
     geom_tile(colour='black') + scale_fill_identity() +
     ## add title: 
