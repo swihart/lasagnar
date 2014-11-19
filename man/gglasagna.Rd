@@ -4,7 +4,7 @@
 \alias{gglasagna}
 \title{ggplot() implementation of Lasagna Function}
 \usage{
-gglasagna(X, col = rainbow_hcl(length(unique(X))), axes = FALSE,
+gglasagna(X, col = rainbow_hcl(length(unique(c(X)))), axes = FALSE,
   main = "(A)  Initial Lasagna Plot", main.adj = 0, cex.axis = 1.75,
   gridlines = TRUE, ...)
 }

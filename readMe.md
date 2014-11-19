@@ -54,17 +54,13 @@ names(dimnames(H.mat))<-c('Subject','Time')
 par(mai = c(.34,.39,.34,.09))
 
 ## base:
-lasagna(H.mat)
-```
+##lasagna(H.mat)
 
-![plot of chunk partystarted](./readMe_files/figure-html/partystarted1.png) 
-
-```r
 ## ggplot:
 gglasagna(H.mat)
 ```
 
-![plot of chunk partystarted](./readMe_files/figure-html/partystarted2.png) 
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted1.png) 
 
 ```r
 ## however, you may want lasagna plain and customize the plot how you wish
@@ -104,7 +100,7 @@ axis(2,
      col="black") 
 ```
 
-![plot of chunk partystarted](./readMe_files/figure-html/partystarted3.png) 
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted2.png) 
 
 ```r
 ##
@@ -134,7 +130,7 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
   coord_cartesian(xlim=c(.49,6.51))
 ```
 
-![plot of chunk partystarted](./readMe_files/figure-html/partystarted4.png) 
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted3.png) 
 
 
 
