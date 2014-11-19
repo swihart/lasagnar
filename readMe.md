@@ -168,6 +168,7 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
 #Four sorting functions:  `wr()`, `er()`, `wc()`, `ec()`.
 * `wr()` sorts within-row: if the values being displayed are discrete, use `wr.disc()`; continuous use `wr.cont()`.
 `lasagna_plain(wr.disc(H.mat))` generates a within-row sorted `H.mat` where the smallest value (and corresponding color) is left-most; to control this use the `colorSeq` option: `lasagna_plain(wr.disc(H.mat), colorSeq=c(300,100,200))` (see code chunk below for full code; axes, etc.):
+
 ![plot of chunk unnamed-chunk-2](./readMe_files/figure-html/unnamed-chunk-2.png) 
 
 ![plot of chunk unnamed-chunk-3](./readMe_files/figure-html/unnamed-chunk-3.png) 
@@ -247,6 +248,9 @@ axis(2,
 Note:  in progress below this line.
 Note:  in progress below this line.
 Note:  in progress below this line.
+
+
+
 
 Something came to my attention while working on er():  no one wants to handle the axes comments themselves ---- rewrite lasagna to include these and do automatic sorting (for instance, if you don't include the axes comments in lasagna, you'll have to do the sorting of the subject ids outside of the er() sorting...I mean, what a mess.  )
 
