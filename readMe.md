@@ -7,7 +7,7 @@ November 5, 2014
 [2]  The follow-up paper for SAS code: [Lasagna Plots Made in Different (Statistical) Ovens](http://journals.lww.com/epidem/Fulltext/2012/11000/Lasagna_Plots_Made_in_Different__Statistical_.33.aspx)
 
 
-There is [an appendix](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2937254/bin/NIHMS225391-supplement-1.pdf) for [1], but no one likes it.  At the time the only option for supplemental materials was to put R code into a PDF, thus introducing a hurdle for easy usage.  This repo on github has been long overdue.  This repo is an R-package, and can be installed and ready to go with a few lines in R.
+There is [an appendix](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2937254/bin/NIHMS225391-supplement-1.pdf) for [1] that has some `R` code, but no one likes it.  At the time the only option for supplemental materials was to put R code into a PDF, thus introducing a hurdle for easy usage.  This repo on github has been long overdue.  This repo is an R-package, and can be installed and ready to go with a few lines in R.
 
 #Quick start!:
 
@@ -44,15 +44,27 @@ H.mat[3, 1:6] = 100*c(2, 2, 1, 1, 1, 3)
 H.mat[4, 1:6] = 100*c(3, 3, 2, 1, 2, 3)
 ## set rownames with ids
 rownames(H.mat)<-c("P1","T1","P2","T2")
+## set colnames with time / location / column index:
+colnames(H.mat)<-seq(ncol(H.mat))
+## name your dimensions
+names(dimnames(H.mat))<-c('Subject','Time')
+
 
 ## Fiddle with the margins:
 par(mai = c(.34,.39,.34,.09))
 
-## bam:
+## base:
 lasagna(H.mat)
 ```
 
 ![plot of chunk partystarted](./readMe_files/figure-html/partystarted1.png) 
+
+```r
+## ggplot:
+gglasagna(H.mat)
+```
+
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted2.png) 
 
 ```r
 ## however, you may want lasagna plain and customize the plot how you wish
@@ -92,17 +104,14 @@ axis(2,
      col="black") 
 ```
 
-![plot of chunk partystarted](./readMe_files/figure-html/partystarted2.png) 
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted3.png) 
 
 ```r
 ##
 ## ggplot2:
 ##
-library(ggplot2)
-library(reshape2)
-rownames(H.mat)<-c('P1','T1','P2','T2')
-colnames(H.mat)<-seq(ncol(H.mat))
-names(dimnames(H.mat))<-c('Subject','Time')
+##library(ggplot2)
+##library(reshape2)
 H.df<-melt(H.mat)
 
 ## EDIT to nograpes answer:
@@ -125,7 +134,7 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
   coord_cartesian(xlim=c(.49,6.51))
 ```
 
-![plot of chunk partystarted](./readMe_files/figure-html/partystarted3.png) 
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted4.png) 
 
 
 

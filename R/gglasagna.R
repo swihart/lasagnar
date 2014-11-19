@@ -9,7 +9,7 @@
 #' @param cex.axis the cex.axis value if `axes` is FALSE.
 #' @param gridlines (logical) default TRUE.
 #' @param ... Additional stuff to be passed to \code{image}
-gglasagna<- function(X, col=rainbow_hcl(100), axes=FALSE, 
+gglasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE, 
                    main="(A)  Initial Lasagna Plot", main.adj=0, 
                    cex.axis=1.75, 
                    gridlines=TRUE,...){
@@ -24,8 +24,8 @@ gglasagna<- function(X, col=rainbow_hcl(100), axes=FALSE,
   brks <- sort(unique(H.df[,2])) 
   
   # If you want those exact colours the author used:
-  col<-palette[match(ordered(H.df$value),levels(ordered(H.df$value)))]
-  ggplot(H.df,aes(x=Time,y=Subject,fill=col)) + 
+  colors<-col[match(ordered(H.df$value),levels(ordered(H.df$value)))]
+  ggplot(H.df,aes(x=Time,y=Subject,fill=colors)) + 
     geom_tile(colour='black') + scale_fill_identity() +
     ## add title: 
     ggtitle(main)+

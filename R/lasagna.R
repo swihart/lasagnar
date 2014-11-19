@@ -9,7 +9,7 @@
 #' @param cex.axis the cex.axis value if `axes` is FALSE.
 #' @param gridlines (logical) default TRUE.
 #' @param ... Additional stuff to be passed to \code{image}
-lasagna<- function(X, col=rainbow_hcl(100), axes=FALSE, 
+lasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE, 
                    main="(A)  Initial Lasagna Plot", main.adj=0, 
                    cex.axis=1.75, 
                    gridlines=TRUE,...){
