@@ -34,8 +34,6 @@ Note:  Windows machines will need to install [Rtools](http://cran.r-project.org/
 #Base and ggplot2 implementation:
 
 ```r
-## Choose a palette
-palette <- brewer.pal(4, "PuOr")[-2]
 ## the matrix containing data for Figure 02a
 H.mat <- matrix(NA, nrow=4, ncol=6)
 H.mat[1, 1:6] = 100*c(2, 1, 1, 1, 1, 2)
@@ -48,22 +46,53 @@ rownames(H.mat)<-c("P1","T1","P2","T2")
 colnames(H.mat)<-seq(ncol(H.mat))
 ## name your dimensions
 names(dimnames(H.mat))<-c('Subject','Time')
+## print out to see it!
+H.mat
+```
 
+```
+##        Time
+## Subject   1   2   3   4   5   6
+##      P1 200 100 100 100 100 200
+##      T1 200 200 200 300 200 100
+##      P2 200 200 100 100 100 300
+##      T2 300 300 200 100 200 300
+```
 
+```r
 ## Fiddle with the margins:
 par(mai = c(.34,.39,.34,.09))
 
 ## base:
-##lasagna(H.mat)
-
-## ggplot:
-gglasagna(H.mat)
+lasagna(H.mat)
 ```
 
 ![plot of chunk partystarted](./readMe_files/figure-html/partystarted1.png) 
 
 ```r
-## however, you may want lasagna plain and customize the plot how you wish
+## ggplot:
+gglasagna(H.mat)
+```
+
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted2.png) 
+
+```r
+## Choose a palette
+palette <- brewer.pal(4, "PuOr")[-2]
+
+lasagna(H.mat, col=palette)
+```
+
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted3.png) 
+
+```r
+gglasagna(H.mat, col=palette)
+```
+
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted4.png) 
+
+```r
+## however, you may want lasagna_plain() and customize the plot how you wish
 ## with axes statements, etc:
 
 ## variables to specify the scalar CEX multiplier for title, labels, and axis:
@@ -100,7 +129,7 @@ axis(2,
      col="black") 
 ```
 
-![plot of chunk partystarted](./readMe_files/figure-html/partystarted2.png) 
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted5.png) 
 
 ```r
 ##
@@ -130,7 +159,7 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
   coord_cartesian(xlim=c(.49,6.51))
 ```
 
-![plot of chunk partystarted](./readMe_files/figure-html/partystarted3.png) 
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted6.png) 
 
 
 

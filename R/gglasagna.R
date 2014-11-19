@@ -26,6 +26,7 @@ gglasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE,
   # If you want those exact colours the author used:
   colors<-col[match(ordered(H.df$value),levels(ordered(H.df$value)))]
   H.df$colors <- colors
+  names(H.df) <- c("Subject","Time", "value", "colors")
   ggplot(H.df,aes(x=Time,y=Subject,fill=colors)) + 
     geom_tile(colour='black') + scale_fill_identity() +
     ## add title: 
@@ -38,7 +39,9 @@ gglasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE,
     scale_x_discrete(breaks= c(brks)) +
     ## and for some reason need this line to zoom:
     ##coord_cartesian(xlim=c(.49,6.51))
-    coord_cartesian(xlim=c(brks[1]-.51,brks[length(brks)]+.51))
+    coord_cartesian(xlim=c(brks[1]-.51,brks[length(brks)]+.51))+
+    ylab(names(dimnames(X))[1])+
+    xlab(names(dimnames(X))[2])
   
   
   
