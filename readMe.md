@@ -19,8 +19,12 @@ library(lasagnar)
 library(ggplot2)
 library(reshape2)
 library(RColorBrewer)
-library(colorspace)                                                                                                                              
-lasagna(matrix(1:100, nrow=10, ncol=10, byrow=TRUE)[sample(1:10),])
+library(colorspace)  
+## get me a matrix with rownames:
+mat <- matrix(1:100, nrow=10, ncol=10, byrow=TRUE)[sample(1:10),]
+rownames(mat) <- letters[1:nrow(mat)]
+
+lasagna(mat)
 ```
 
 ![plot of chunk unnamed-chunk-1](./readMe_files/figure-html/unnamed-chunk-1.png) 
