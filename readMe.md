@@ -133,7 +133,7 @@ axis(2,
 
 ```r
 ##
-## ggplot2:
+## ggplot2:  There is currently no gglasagna_plain(), but below is the ggplot code
 ##
 ##library(ggplot2)
 ##library(reshape2)
@@ -169,12 +169,24 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
 * `wr()` sorts within-row: if the values being displayed are discrete, use `wr.disc()`; continuous use `wr.cont()`.
 `lasagna_plain(wr.disc(H.mat))` generates a within-row sorted `H.mat` where the smallest value (and corresponding color) is left-most; to control this use the `colorSeq` option: `lasagna_plain(wr.disc(H.mat), colorSeq=c(300,100,200))` (see code chunk below for full code; axes, etc.):
 
+Visualizing a within-row sort can be done with the following:
+
+```r
+## quick and dirty within-row sort viz:
+lasagna(wr.disc(H.mat),col=palette, main="(B)  Within-row sorting of (A): Orange Left-most")
+```
+
 ![plot of chunk unnamed-chunk-2](./readMe_files/figure-html/unnamed-chunk-2.png) 
+
+However, the axes might need more customization. In that case, consider using `lasagna_plain()` (code is below):
 
 ![plot of chunk unnamed-chunk-3](./readMe_files/figure-html/unnamed-chunk-3.png) 
 
+And here is an example of sorting dark-purple first (code below):
+![plot of chunk unnamed-chunk-4](./readMe_files/figure-html/unnamed-chunk-4.png) 
 
 
+Code for orange-first within-row sort (default call to `wr.disc()` because orange is coded to lowest value):
 
 ```r
 ## within-row
@@ -209,6 +221,8 @@ axis(2,
      col="black") # grid lines
 ```
 
+
+Code for dark-purple-first within-row sort (call to `wr.disc()` with `colorSeq` because dark-purple is coded to highest value):
 
 ```r
 ## within-row with colorSeq order control:
@@ -257,9 +271,9 @@ Something came to my attention while working on er():  no one wants to handle th
 
 * `er()` sorts entire-row: if the values being displayed are discrete
 `lasagna_plain(er(H.mat))` generates an entire-row sorted `H.mat` where the smallest value (and corresponding color) is left-most; to control this use the `orderVar` option: `lasagna_plain(wr.disc(H.mat), colorSeq=c(300,100,200))` (see code chunk below for full code; axes, etc.):
-![plot of chunk unnamed-chunk-6](./readMe_files/figure-html/unnamed-chunk-6.png) 
-
 ![plot of chunk unnamed-chunk-7](./readMe_files/figure-html/unnamed-chunk-7.png) 
+
+![plot of chunk unnamed-chunk-8](./readMe_files/figure-html/unnamed-chunk-8.png) 
 
 
 
