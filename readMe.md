@@ -259,6 +259,51 @@ axis(2,
 
 
 
+
+* `er()` sorts entire rows, preserving the temporal (columns) information.  The default is to sort based on the percentage of occurences of the lowest value, and then the subject with the highest percentage will be the bottom row; the lowest will be the top. 
+
+Visualizing a within-row sort can be done with the following, where orange is the color coded to the lowest value:
+
+```r
+## quick and dirty within-row sort viz:
+lasagna(er(H.mat),col=palette, main="(C)  Entire-row sorting of (A)")
+```
+
+![plot of chunk unnamed-chunk-7](./readMe_files/figure-html/unnamed-chunk-7.png) 
+
+For dark-purple:
+
+```r
+## quick and dirty within-row sort viz:
+lasagna(er(H.mat, orderVar=300),col=palette, main="(C)  Entire-row sorting of (A)")
+```
+
+![plot of chunk unnamed-chunk-8](./readMe_files/figure-html/unnamed-chunk-8.png) 
+
+
+Also, do not need `er()` whatsoever.  Below we calculate the mean value for each subject and then entire-row sort where the order is based on the subject-specific mean:
+
+```r
+## quick and dirty within-row sort viz:
+rM = rowMeans(H.mat)
+## see the ordering
+sort(rM)
+```
+
+```
+##    P1    P2    T1    T2 
+## 133.3 166.7 200.0 233.3
+```
+
+```r
+## visualize lasagna plot with corresponding ordering
+lasagna(H.mat[order(rM),],col=palette, main="(C)  Entire-row sorting of (A)")
+```
+
+![plot of chunk unnamed-chunk-9](./readMe_files/figure-html/unnamed-chunk-9.png) 
+
+
+
 Note:  in progress below this line.
 Note:  in progress below this line.
 Note:  in progress below this line.
@@ -271,9 +316,9 @@ Something came to my attention while working on er():  no one wants to handle th
 
 * `er()` sorts entire-row: if the values being displayed are discrete
 `lasagna_plain(er(H.mat))` generates an entire-row sorted `H.mat` where the smallest value (and corresponding color) is left-most; to control this use the `orderVar` option: `lasagna_plain(wr.disc(H.mat), colorSeq=c(300,100,200))` (see code chunk below for full code; axes, etc.):
-![plot of chunk unnamed-chunk-7](./readMe_files/figure-html/unnamed-chunk-7.png) 
+![plot of chunk unnamed-chunk-10](./readMe_files/figure-html/unnamed-chunk-10.png) 
 
-![plot of chunk unnamed-chunk-8](./readMe_files/figure-html/unnamed-chunk-8.png) 
+![plot of chunk unnamed-chunk-11](./readMe_files/figure-html/unnamed-chunk-11.png) 
 
 
 
