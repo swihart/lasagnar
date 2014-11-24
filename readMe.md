@@ -262,10 +262,10 @@ axis(2,
 
 * `er()` sorts entire rows, preserving the temporal (columns) information.  The default is to sort based on the percentage of occurences of the lowest value, and then the subject with the highest percentage will be the bottom row; the lowest will be the top. 
 
-Visualizing a within-row sort can be done with the following, where orange is the color coded to the lowest value:
+Visualizing an entire-row sort can be done with the following, where orange is the color coded to the lowest value:
 
 ```r
-## quick and dirty within-row sort viz:
+## quick and dirty entire-row sort viz:
 lasagna(er(H.mat),col=palette, main="(C)  Entire-row sorting of (A)")
 ```
 
@@ -274,7 +274,7 @@ lasagna(er(H.mat),col=palette, main="(C)  Entire-row sorting of (A)")
 For dark-purple:
 
 ```r
-## quick and dirty within-row sort viz:
+## quick and dirty entire-row sort viz:
 lasagna(er(H.mat, orderVar=300),col=palette, main="(C)  Entire-row sorting of (A)")
 ```
 
@@ -303,10 +303,29 @@ lasagna(H.mat[order(rM),],col=palette, main="(C)  Entire-row sorting of (A)")
 ![plot of chunk unnamed-chunk-9](./readMe_files/figure-html/unnamed-chunk-9.png) 
 
 
+* `wc()` sorts within-columns, scrambling the subject-specific nature of the rows but revealing a group-level temporal patterns.  As with `wr()` there is a discrete and continuous implementation `wc.disc()` and `wc.cont()`.
 
-Note:  in progress below this line.
-Note:  in progress below this line.
-Note:  in progress below this line.
+Visualizing a within-column sort can be done with the following, where orange is the color coded to the lowest value:
+
+```r
+## quick and dirty within-column sort viz:
+lasagna(wc.disc(H.mat),col=palette, main="(D)  Within-column sorting of (A)")
+```
+
+![plot of chunk unnamed-chunk-10](./readMe_files/figure-html/unnamed-chunk-10.png) 
+
+For orange (100) on top, dark-purple (300) middle, light-purple (200) on bottom:
+
+```r
+## specify colorSeq top to bottom:
+lasagna(wc.disc(H.mat, colorSeq=c(100,300,200)),col=palette, main="(D)  Within-column sorting of (A)")
+```
+
+![plot of chunk unnamed-chunk-11](./readMe_files/figure-html/unnamed-chunk-11.png) 
+
+#Note:  in progress below this line.
+##Note:  in progress below this line.
+###Note:  in progress below this line.
 
 
 
@@ -316,9 +335,9 @@ Something came to my attention while working on er():  no one wants to handle th
 
 * `er()` sorts entire-row: if the values being displayed are discrete
 `lasagna_plain(er(H.mat))` generates an entire-row sorted `H.mat` where the smallest value (and corresponding color) is left-most; to control this use the `orderVar` option: `lasagna_plain(wr.disc(H.mat), colorSeq=c(300,100,200))` (see code chunk below for full code; axes, etc.):
-![plot of chunk unnamed-chunk-10](./readMe_files/figure-html/unnamed-chunk-10.png) 
+![plot of chunk unnamed-chunk-12](./readMe_files/figure-html/unnamed-chunk-12.png) 
 
-![plot of chunk unnamed-chunk-11](./readMe_files/figure-html/unnamed-chunk-11.png) 
+![plot of chunk unnamed-chunk-13](./readMe_files/figure-html/unnamed-chunk-13.png) 
 
 
 
