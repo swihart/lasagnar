@@ -8,11 +8,13 @@
 #' @param main.adj the value for `adj` in title().  Defaults to 0, which is left-aligned.
 #' @param cex.axis the cex.axis value if `axes` is FALSE.
 #' @param gridlines (logical ) default TRUE.
+#' @param legend (logical) defaults FALSE.
 #' @param ... Additional stuff to be passed to \code{image}
 gglasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE, 
                    main="(A)  Initial Lasagna Plot", main.adj=0, 
                    cex.axis=1.75, 
-                   gridlines=TRUE,...){
+                   gridlines=TRUE,
+                   legend=FALSE, ...){
 
   
   H.df<-melt(X)
@@ -27,8 +29,8 @@ gglasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE,
   colors<-col[match(ordered(H.df$value),levels(ordered(H.df$value)))]
   H.df$colors <- colors
   names(H.df) <- c("Subject","Time", "value", "colors")
-  ggplot(H.df,aes(x=Time,y=Subject,fill=colors)) + 
-    geom_tile(colour='black') + scale_fill_identity() +
+  no.legend <- ggplot(H.df,aes(x=Time,y=Subject,fill=colors)) + 
+    geom_tile() + ##scale_fill_identity() +
     ## add title: 
     ggtitle(main)+
     theme(plot.title = element_text(hjust = main.adj))+
@@ -43,44 +45,9 @@ gglasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE,
     ylab(names(dimnames(X))[1])+
     xlab(names(dimnames(X))[2])
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-#   
-#   
-#   
-#   
-#   
-#   
-#   ## THE crucial piece:  everything else is just window dressing
-#   image(t(X)[,(nrow(X):1)], col=col, axes=axes, ...  )
-#   ## box border
-#   box()
-#   title(main, adj=main.adj)
-#   if(!axes){
-#   axis(1, seq(0,1,1/(ncol(X)-1)), 1:ncol(X), cex.axis=cex.axis, tck=0, mgp=c(0,.50,0))
-#   axis(2, seq(0,1,1/(nrow(X)-1)), rev(rownames(X)),las=1,
-#        cex.axis=cex.axis, tck=0, mgp=c(0,.2,0))
-#   }
-#   if(gridlines){
-#   ## next two axis() calls add grid-lines:
-#   axis(1,
-#        seq( 1/(ncol(X)-1)*0.5, 1 - 1/(ncol(X)-1)*0.5, length=(ncol(X)-1)),##c(1/10,3/10,5/10,7/10,9/10),
-#        lab=NA,
-#        tck=1,
-#        lty=1,
-#        col="black") 
-#   axis(2,
-#        seq( 1/(nrow(X)-1)*0.5, 1 - 1/(nrow(X)-1)*0.5, length=(nrow(X)-1)),##c(1/6,3/6,5/6),
-#        lab=NA,
-#        tck=1,
-#        lty=1,
-#        col="black") 
-#   }
+  ## I have geom_tile() twice as a hack.  See bottom of:
+  ## http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/
+  if(!legend){no.legend + geom_tile(colour='black', show_guide=FALSE) + scale_fill_identity() 
+  }else{ no.legend + geom_tile(colour='black', show_guide=FALSE) + scale_fill_identity("Value", guide="legend", labels=rev(sort(unique(c(X)))))}
+
 }

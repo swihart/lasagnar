@@ -17,9 +17,9 @@ lasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE,
                    legend=FALSE, ...){
   if(!legend){
   ## THE crucial piece:  everything else is just window dressing
-  image(t(X)[,(nrow(X):1)], col=col, axes=axes, ...  ); print("image")
+  image(t(X)[,(nrow(X):1)], col=col, axes=axes, ...  )
   }else{
-  image.plot(t(X)[,(nrow(X):1)], col=col, axes=axes, ...  ); print("image.plot")
+  image.plot(t(X)[,(nrow(X):1)], col=col, axes=axes, ...  )
   }
   ## box border
   box()

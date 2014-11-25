@@ -6,7 +6,7 @@
 \usage{
 gglasagna(X, col = rainbow_hcl(length(unique(c(X)))), axes = FALSE,
   main = "(A)  Initial Lasagna Plot", main.adj = 0, cex.axis = 1.75,
-  gridlines = TRUE, ...)
+  gridlines = TRUE, legend = FALSE, ...)
 }
 \arguments{
 \item{X}{a matrix: each row a subject, each column a time/location across subjects; preferably rownames are the ids.}
@@ -23,6 +23,8 @@ for followable advice on colors.}
 \item{cex.axis}{the cex.axis value if `axes` is FALSE.}
 
 \item{gridlines}{(logical ) default TRUE.}
+
+\item{legend}{(logical) defaults FALSE.}
 
 \item{...}{Additional stuff to be passed to \code{image}}
 }
