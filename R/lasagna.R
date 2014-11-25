@@ -8,13 +8,19 @@
 #' @param main.adj the value for `adj` in title().  Defaults to 0, which is left-aligned.
 #' @param cex.axis the cex.axis value if `axes` is FALSE.
 #' @param gridlines (logical) default TRUE.
+#' @param legend (logical) defaults to FALSE.  TRUE invokes image.plot() from fields package instead of image() and thus displays a legend.
 #' @param ... Additional stuff to be passed to \code{image}
 lasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE, 
                    main="(A)  Initial Lasagna Plot", main.adj=0, 
                    cex.axis=1.75, 
-                   gridlines=TRUE,...){
+                   gridlines=TRUE,
+                   legend=FALSE, ...){
+  if(!legend){
   ## THE crucial piece:  everything else is just window dressing
-  image(t(X)[,(nrow(X):1)], col=col, axes=axes, ...  )
+  image(t(X)[,(nrow(X):1)], col=col, axes=axes, ...  ); print("image")
+  }else{
+  image.plot(t(X)[,(nrow(X):1)], col=col, axes=axes, ...  ); print("image.plot")
+  }
   ## box border
   box()
   title(main, adj=main.adj)
