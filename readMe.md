@@ -70,10 +70,6 @@ lasagna(H.mat)
 
 ![plot of chunk partystarted](./readMe_files/figure-html/partystarted1.png) 
 
-```
-## [1] "image"
-```
-
 ```r
 ## ggplot:
 gglasagna(H.mat)
@@ -90,10 +86,6 @@ lasagna(H.mat, col=palette)
 
 ![plot of chunk partystarted](./readMe_files/figure-html/partystarted3.png) 
 
-```
-## [1] "image"
-```
-
 ```r
 gglasagna(H.mat, col=palette)
 ```
@@ -107,9 +99,11 @@ lasagna(H.mat, col=palette, legend=TRUE)
 
 ![plot of chunk partystarted](./readMe_files/figure-html/partystarted5.png) 
 
+```r
+gglasagna(H.mat, col=palette, legend=TRUE)
 ```
-## [1] "image.plot"
-```
+
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted6.png) 
 
 ```r
 ## however, you may want lasagna_plain() and customize the plot how you wish
@@ -149,7 +143,7 @@ axis(2,
      col="black") 
 ```
 
-![plot of chunk partystarted](./readMe_files/figure-html/partystarted6.png) 
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted7.png) 
 
 ```r
 ##
@@ -179,7 +173,7 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
   coord_cartesian(xlim=c(.49,6.51))
 ```
 
-![plot of chunk partystarted](./readMe_files/figure-html/partystarted7.png) 
+![plot of chunk partystarted](./readMe_files/figure-html/partystarted8.png) 
 
 
 
@@ -197,10 +191,6 @@ lasagna(wr.disc(H.mat),col=palette, main="(B)  Within-row sorting of (A): Orange
 ```
 
 ![plot of chunk unnamed-chunk-2](./readMe_files/figure-html/unnamed-chunk-2.png) 
-
-```
-## [1] "image"
-```
 
 However, the axes might need more customization. In that case, consider using `lasagna_plain()` (code is below):
 
@@ -295,10 +285,6 @@ lasagna(er(H.mat),col=palette, main="(C)  Entire-row sorting of (A)")
 
 ![plot of chunk unnamed-chunk-7](./readMe_files/figure-html/unnamed-chunk-7.png) 
 
-```
-## [1] "image"
-```
-
 For dark-purple:
 
 ```r
@@ -307,10 +293,6 @@ lasagna(er(H.mat, orderVar=300),col=palette, main="(C)  Entire-row sorting of (A
 ```
 
 ![plot of chunk unnamed-chunk-8](./readMe_files/figure-html/unnamed-chunk-8.png) 
-
-```
-## [1] "image"
-```
 
 
 Also, do not need `er()` whatsoever.  Below we calculate the mean value for each subject and then entire-row sort where the order is based on the subject-specific mean:
@@ -334,10 +316,6 @@ lasagna(H.mat[order(rM),],col=palette, main="(C)  Entire-row sorting of (A)")
 
 ![plot of chunk unnamed-chunk-9](./readMe_files/figure-html/unnamed-chunk-9.png) 
 
-```
-## [1] "image"
-```
-
 
 * `wc()` sorts within-columns, scrambling the subject-specific nature of the rows but revealing a group-level temporal patterns.  As with `wr()` there is a discrete and continuous implementation `wc.disc()` and `wc.cont()`.
 
@@ -350,10 +328,6 @@ lasagna(wc.disc(H.mat),col=palette, main="(D)  Within-column sorting of (A)")
 
 ![plot of chunk unnamed-chunk-10](./readMe_files/figure-html/unnamed-chunk-10.png) 
 
-```
-## [1] "image"
-```
-
 For orange (100) on top, dark-purple (300) middle, light-purple (200) on bottom:
 
 ```r
@@ -362,10 +336,6 @@ lasagna(wc.disc(H.mat, colorSeq=c(100,300,200)),col=palette, main="(D)  Within-c
 ```
 
 ![plot of chunk unnamed-chunk-11](./readMe_files/figure-html/unnamed-chunk-11.png) 
-
-```
-## [1] "image"
-```
 
 #Note:  in progress below this line.
 ##Note:  in progress below this line.
