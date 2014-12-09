@@ -164,9 +164,10 @@ ggplot(H.df,aes(x=Time,y=Subject,fill=col)) +
   geom_tile(colour='black') + scale_fill_identity() +
   ## add title: 
   ggtitle("(A)  Initial Lasagna Plot")+
-  ## adjust size:
+  ## adjust size and title position:
   theme(axis.text=element_text(size=30),
-        axis.title=element_text(size=14,face="bold"))+
+        axis.title=element_text(size=14,face="bold"),
+        plot.title = element_text(hjust = 0))+
   ## get all the breaks:
   scale_x_discrete(breaks=1:6) +
   ## and for some reason need this line to zoom:
