@@ -5,9 +5,10 @@ Authors@R: "Bruce Swihart <bruce.swihart@gmail.com> [aut, cre]"
 Description: Lasagna plots in base and ggplot graphics in R.  Ideal for
     longitudinal data where spaghetti plots succumb to overplotting.
 Depends:
+    lubridate,
     R (>= 2.14)
 Requires:
-    lubridate
+    fields
 Imports:
     colorspace,
     RColorBrewer
