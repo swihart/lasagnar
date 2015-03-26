@@ -6,6 +6,8 @@ Description: Lasagna plots in base and ggplot graphics in R.  Ideal for
     longitudinal data where spaghetti plots succumb to overplotting.
 Depends:
     R (>= 2.14)
+Requires:
+    lubridate
 Imports:
     colorspace,
     RColorBrewer
