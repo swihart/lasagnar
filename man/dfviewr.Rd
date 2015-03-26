@@ -11,17 +11,11 @@ dfviewr(df, col = c("red", "blue", "green", "white", "black"), axes = FALSE,
 \arguments{
 \item{df}{a dataframe}
 
-\item{axes}{(logical) TRUE invokes the default axes from image().  FALSE invokes best guess (to be better defined later)}
-
-\item{main}{as in plot(), the text of the title.  Defaults to "(A)  Initial Lasagna Plot"}
-
-\item{main.adj}{the value for `adj` in title().  Defaults to 0, which is left-aligned.}
-
-\item{cex.axis}{the cex.axis value if `axes` is FALSE.}
+\item{col}{a vector of 5 colors.  The first is for dates, second for factors, third for characters, fourth for numeric, and fifth for NA.}
 
 \item{gridlines}{(logical) default TRUE.}
 
-\item{legend}{(logical) defaults to FALSE.  TRUE invokes image.plot() from fields package instead of image() and thus displays a legend.}
+\item{legend}{(logical) defaults to TRUE.}
 
 \item{...}{Additional stuff to be passed to \code{image}}
 }
