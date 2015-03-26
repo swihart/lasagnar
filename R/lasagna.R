@@ -17,7 +17,7 @@ lasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE,
                    legend=FALSE, ...){
   if(!legend){
   ## THE crucial piece:  everything else is just window dressing
-  image(t(X)[,(nrow(X):1)], col=col, axes=axes, ...  )
+  image(t(X)[,(nrow(X):1)], col=col, axes=axes, useRaster = TRUE, ...  )
   }else{
   image.plot(t(X)[,(nrow(X):1)], col=col, axes=axes, ...  )
   }
