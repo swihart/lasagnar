@@ -1,5 +1,6 @@
 #' @name lasagna
 #' @title Lasagna Function
+#' @description Generic Lasagna Function
 #' @param X a matrix: each row a subject, each column a time/location across subjects; preferably rownames are the ids.
 #' @param col colors.  See "Escaping RGB Land" and the vignette for the colorspace package
 #' for followable advice on colors.
@@ -10,6 +11,8 @@
 #' @param gridlines (logical) default TRUE.
 #' @param legend (logical) defaults to FALSE.  TRUE invokes image.plot() from fields package instead of image() and thus displays a legend.
 #' @param ... Additional stuff to be passed to \code{image}
+#' @importFrom fields image.plot
+#' @export 
 lasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE, 
                    main="(A)  Initial Lasagna Plot", main.adj=0, 
                    cex.axis=1.75, 
@@ -33,13 +36,13 @@ lasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE,
   ## next two axis() calls add grid-lines:
   axis(1,
        seq( 1/(ncol(X)-1)*0.5, 1 - 1/(ncol(X)-1)*0.5, length=(ncol(X)-1)),##c(1/10,3/10,5/10,7/10,9/10),
-       lab=NA,
+       labels=NA,
        tck=1,
        lty=1,
        col="black") 
   axis(2,
        seq( 1/(nrow(X)-1)*0.5, 1 - 1/(nrow(X)-1)*0.5, length=(nrow(X)-1)),##c(1/6,3/6,5/6),
-       lab=NA,
+       labels = NA,
        tck=1,
        lty=1,
        col="black") 

@@ -1,4 +1,5 @@
 #' @name lasagna_plain
+#' @description Plain Lasagna Plot
 #' @title Lasagna Function: no axes, no title, no legend, no nothing
 #' @param X a matrix: each row a subject, each column a time/location across subjects
 #' @param col colors.  See "Escaping RGB Land" and the vignette for the colorspace package

@@ -1,0 +1,11 @@
+load("/Users/johnmuschelli/Dropbox/Packages/lasagnar/data/df.in.RData")
+ls()
+df.in
+save(df2.in, file = "df2.in.rda", compression_level = "xz")
+save(df2.in, file = "df2.in.rda", compression = "xz")
+save(df2.in, file = "df2.in.rda", compress = "xz")
+save(df.in, file = "df.in.rda", compress = "xz")
+load("/Users/johnmuschelli/Dropbox/Packages/ichseg/data/est.cutoffs.rda")
+ls()
+est.cutoffs
+q('no')

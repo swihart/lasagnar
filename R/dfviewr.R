@@ -1,13 +1,18 @@
 #' @name dfviewr
 #' @title data frame viewer
+#' @description Views data.frames with a legend
 #' @param df a dataframe 
-#' @param col a vector of 5 colors.  The first is for dates, second for factors, third for characters, fourth for numeric, and fifth for NA.
-#' @param gridlines (logical) default TRUE.
-#' @param legend (logical) defaults to TRUE.
-#' @param ... Additional stuff to be passed to \code{image}
+#' @param col a vector of 5 colors.  The first is for dates, 
+#' second for factors, third for characters, fourth for numeric, and fifth for NA.
+#' @param axes Axes passed to \code{lasagna}
+#' @param main Title passed to \code{lasagna}
+#' @param gridlines (logical) default TRUE,  passed to \code{lasagna}
+#' @param legend (logical) defaults to TRUE. Creates a legend
+#' @param ... Additional argument to be passed to \code{image}
+#' @importFrom lubridate is.POSIXct
+#' @export
 dfviewr <- function(df, col=c("red","blue","green","white","black"), axes=FALSE, 
-                       main="", main.adj=0, 
-                       cex.axis=1.75, 
+                       main="", 
                        gridlines=TRUE,
                        legend=TRUE, ...){
   
@@ -35,9 +40,13 @@ dfviewr <- function(df, col=c("red","blue","green","white","black"), axes=FALSE,
   row.names(mat.out) <- 1:nrow(df)
   
   
-  lasagna(mat.out, col=col, cex=0.67, main=main, gridlines=gridlines)
-  if(legend){legend("bottom", fill=col,
-                    legend=c("dates", "factors", "characters", "numeric", "NA"), 
-                    horiz=T, xpd=NA, inset=c(-.15), border="black")}
+  lasagna(mat.out, col=col, cex.axis=0.67, main=main, gridlines=gridlines)
+  if(legend){
+    legend("bottom", fill = col,
+                    legend=c("dates", "factors", 
+                             "characters", "numeric", "NA"), 
+                    horiz = TRUE, xpd=NA, 
+           inset=c(-.15), border="black")
+    }
   
 }
