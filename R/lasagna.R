@@ -10,6 +10,8 @@
 #' @param yaxis Use best guess y-axis if \code{image.axis = FALSE}
 #' @param main as in plot(), the text of the title.  Defaults to "(A)  Initial Lasagna Plot"
 #' @param main.adj the value for `adj` in title().  Defaults to 0, which is left-aligned.
+#' @param xlab Label for x-axis
+#' @param ylab Label for y-axis
 #' @param cex.axis the cex.axis value if `axes` is FALSE.
 #' @param gridlines (logical) Add gridlines to the plot.  Useful if image is not
 #' too big.
@@ -22,28 +24,35 @@ lasagna <- function(X, col=rainbow_hcl(length(unique(c(X)))),
                    xaxis = TRUE,
                    yaxis = TRUE,
                    main="(A)  Initial Lasagna Plot", main.adj=0, 
+                   xlab = NULL,
+                   ylab = NULL,
                    cex.axis=1.75, 
                    gridlines=FALSE,
                    legend=FALSE, ...){
   if (!legend) {
     ## THE crucial piece:  everything else is just window dressing
-    image(t(X)[,(nrow(X):1)], col=col, axes=image.axes, useRaster = TRUE, ...  )
+    image(t(X)[,(nrow(X):1)], col=col, axes=image.axes, 
+          useRaster = TRUE, ...  )
   } else{
-    image.plot(t(X)[,(nrow(X):1)], col=col, axes=image.axes, useRaster = TRUE, ...  )
+    image.plot(t(X)[,(nrow(X):1)], col=col, axes=image.axes, 
+               useRaster = TRUE, ...  )
   }
   ## box border
   box()
-  title(main, adj=main.adj)
+  title(main, adj = main.adj, xlab = xlab, ylab = ylab)
   if(!image.axes){
     if (xaxis){
-      axis(1, seq(0,1,1/(ncol(X)-1)), 
-           1:ncol(X), cex.axis=cex.axis, 
-           tck=0, mgp=c(0,.50,0))
+      axis(side = 1, at = seq(0,1,1/(ncol(X)-1)), 
+           labels = 1:ncol(X), 
+           cex.axis=cex.axis, 
+           tck = 0, mgp=c(0,.50,0))
     }
     if (yaxis){
-      axis(2, seq(0,1,1/(nrow(X)-1)), 
-           rev(rownames(X)), las=1,
-           cex.axis=cex.axis, tck=0, mgp=c(0,.2,0))
+      axis(side = 2, at = seq(0,1,1/(nrow(X)-1)), 
+           labels = rev(rownames(X)), 
+           las=1,
+           cex.axis=cex.axis, 
+           tck=0, mgp=c(0,.2,0))
     }
   }
   if(gridlines){

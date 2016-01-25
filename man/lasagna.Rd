@@ -6,7 +6,8 @@
 \usage{
 lasagna(X, col = rainbow_hcl(length(unique(c(X)))), image.axes = FALSE,
   xaxis = TRUE, yaxis = TRUE, main = "(A)  Initial Lasagna Plot",
-  main.adj = 0, cex.axis = 1.75, gridlines = FALSE, legend = FALSE, ...)
+  main.adj = 0, xlab = NULL, ylab = NULL, cex.axis = 1.75,
+  gridlines = FALSE, legend = FALSE, ...)
 }
 \arguments{
 \item{X}{a matrix: each row a subject, each column a time/location across subjects; preferably rownames are the ids.}
@@ -21,6 +22,10 @@ for followable advice on colors.}
 \item{main}{as in plot(), the text of the title.  Defaults to "(A)  Initial Lasagna Plot"}
 
 \item{main.adj}{the value for `adj` in title().  Defaults to 0, which is left-aligned.}
+
+\item{xlab}{Label for x-axis}
+
+\item{ylab}{Label for y-axis}
 
 \item{cex.axis}{the cex.axis value if `axes` is FALSE.}
 
