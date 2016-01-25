@@ -7,6 +7,7 @@
 #' @param axes (logical) axes on or off?
 #' @import colorspace
 #' @param ... Additional stuff to be passed to \code{image}
+#' @export
 lasagna_plain <- function(X, col = rainbow_hcl(100), axes = FALSE, ...){
   image(t(X)[,(nrow(X):1)], col = col, axes = axes, ...  )
   box()
