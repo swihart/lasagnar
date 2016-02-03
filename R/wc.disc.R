@@ -1,12 +1,17 @@
 #' @name wc.disc
+#' @description Within column sorting of values
 #' @title within-column sorting of discrete values
 #' @param X a matrix: each row a subject, each column a time/location across subjects
 #' @param colorSeq a vector with the unique elements of X presented in the order of the desired
 #' resultant sorting.  Defaults to having lowest value sort to the bottom, highest value to the top.
-#'  @param naLast defaults to false; should NA values be sorted to first position or last. Defaults to FALSE.
+#' @param naLast defaults to false; should NA values be sorted to first position or last. Defaults to FALSE.
 #' ## within-column for discrete
 #' 
-#' 
+#' @export 
+#' @details \code{wc} sorts within-columns, scrambling the subject-specific nature 
+#' of the rows but revealing a group-level temporal patterns.  As with \code{wr} 
+#' there is a discrete and continuous implementation \code{wc.disc} 
+#' and \code{wc.cont}
 wc.disc <- function(X, colorSeq=rev(sort(unique(X))), naLast=F ){
   P <- X
   ## set colnames with time / location / column index:

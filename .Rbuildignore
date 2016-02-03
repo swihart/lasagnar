@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+readMe.html
+readMe_files/*
+readMe.md

@@ -1,5 +1,6 @@
 #' @name gglasagna
 #' @title ggplot() implementation of Lasagna Function
+#' @description Ggplot Lasagna plotter
 #' @param X a matrix: each row a subject, each column a time/location across subjects; preferably rownames are the ids.
 #' @param col colors.  See "Escaping RGB Land" and the vignette for the colorspace package
 #' for followable advice on colors.
@@ -10,18 +11,23 @@
 #' @param gridlines (logical ) default TRUE.
 #' @param legend (logical) defaults FALSE.
 #' @param ... Additional stuff to be passed to \code{image}
-gglasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE, 
-                   main="(A)  Initial Lasagna Plot", main.adj=0, 
-                   cex.axis=1.75, 
-                   gridlines=TRUE,
-                   legend=FALSE, ...){
-
+#' @import colorspace
+#' @import ggplot2
+#' @import reshape2
+#' @export
+gglasagna <- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE, 
+                      main="(A)  Initial Lasagna Plot", main.adj=0, 
+                      cex.axis=1.75, 
+                      gridlines=TRUE,
+                      legend=FALSE, ...){
+  
   
   H.df<-melt(X)
   
   ## EDIT to nograpes answer:
   ## reorder the factor that is Subject by setting levels to the reverse order of rownames 
-  H.df$Subject <- factor(H.df[,1], levels = rev(rownames(X))) 
+  H.df$Subject <- factor(H.df[,1], 
+                         levels = rev(rownames(X))) 
   ## get the times for scale_x_discrete(breaks=brks) call below
   brks <- sort(unique(H.df[,2])) 
   
@@ -29,7 +35,9 @@ gglasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE,
   colors<-col[match(ordered(H.df$value),levels(ordered(H.df$value)))]
   H.df$colors <- colors
   names(H.df) <- c("Subject","Time", "value", "colors")
-  no.legend <- ggplot(H.df,aes(x=Time,y=Subject,fill=colors)) + 
+  no.legend <- ggplot(H.df, aes_string(x = "Time",
+                               y="Subject", 
+                               fill="colors")) + 
     geom_tile() + ##scale_fill_identity() +
     ## add title: 
     ggtitle(main)+
@@ -47,7 +55,14 @@ gglasagna<- function(X, col=rainbow_hcl(length(unique(c(X)))), axes=FALSE,
   
   ## I have geom_tile() twice as a hack.  See bottom of:
   ## http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/
-  if(!legend){no.legend + geom_tile(colour='black', show_guide=FALSE) + scale_fill_identity() 
-  }else{ no.legend + geom_tile(colour='black', show_guide=FALSE) + scale_fill_identity("Value", guide="legend", labels=rev(sort(unique(c(X)))))}
-
+  if(!legend){
+    no.legend + 
+      geom_tile(colour='black', show_guide=FALSE) + 
+      scale_fill_identity() 
+  } else{ 
+    no.legend + geom_tile(colour='black', show_guide=FALSE) + 
+      scale_fill_identity("Value", guide="legend", 
+                          labels=rev(sort(unique(c(X)))))
+  }
+  
 }
